@@ -13,7 +13,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_state")
-public class State implements Serializable {
+public final class State implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
@@ -29,6 +29,8 @@ public class State implements Serializable {
 	@NotBlank
 	@Size(min = 2, max = 2)
 	private String abbreviation;
+	
+	//private List<City> cities=new ArrayList<>();
 
 	public State() {
 	}
