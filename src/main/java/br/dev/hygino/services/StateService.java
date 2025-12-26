@@ -1,5 +1,7 @@
 package br.dev.hygino.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,5 +28,19 @@ public class StateService {
 	private void dtoToEntity(@Valid StateRequestDto dto, State entity) {
 		entity.setName(dto.getName());
 		entity.setAbbreviation(dto.getAbbreviation());
+	}
+
+	@Transactional(readOnly = true)
+	public State findById(Long id) {
+		return stateRepository.findById(id).orElseThrow(() -> new RuntimeException("State not found"));
+	}
+
+	@Transactional(readOnly = true)
+	public List<State> findAll() {
+		return stateRepository.findAll();
+	}
+
+	public void remove(Long id) {
+		stateRepository.deleteById(id);
 	}
 }
